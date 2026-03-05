@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Fotogram – Social Photo App</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="favicon.ico">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="header">
+  <div class="logo">
+    <img src="assets/img/Capa_1.png" alt="Fotogram Logo" width="220" height="41">
+  </div>
+  <nav aria-label="Main Navigation">
+    <ul class="nav">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="#">Explore</a></li>
+      <li><a href="#">Profile</a></li>
+    </ul>
+  </nav>
+</header>
+
+  <main id="main" tabindex="-1">
+    <section class="gallery-section" aria-labelledby="gallery-title">
+      <h1 id="gallery-title">Your personal photo album</h1>
+      <div id="gallery" class="gallery-flex"></div>
+    </section>
+  </main>
+
+  <dialog id="image-dialog" class="modal" aria-labelledby="modal-title">
+    <article class="modal-content">
+        <header class="modal-header">
+        <h2 id="modal-title">Image View</h2>
+        <button id="close-dialog" aria-label="Close" class="icon-btn">
+            <img src="assets/icons/Property 1=Default.svg" alt="Close" class="icon">
+        </button>
+        </header>
+
+        <!-- Hier muss das Figure-Element rein -->
+        <figure id="modal-figure" class="modal-figure"></figure>
+
+        <footer class="modal-footer">
+        <button id="prev-button" aria-label="Previous" class="icon-btn rotate-180">
+            <img src="assets/icons/Arrow-Right.svg" alt="Previous" class="icon">
+        </button>
+        <button id="next-button" aria-label="Next" class="icon-btn">
+            <img src="assets/icons/Arrow-Right.svg" alt="Next" class="icon">
+        </button>
+        </footer>
+    </article>
+    </dialog>
+
+  <footer class="footer">
+    <p>&copy; 2026 Fotogram</p>
+  </footer>
+
+  <script type="module" src="js/script.js"></script>
+</body>
+</html>
