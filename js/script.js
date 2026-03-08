@@ -1,3 +1,11 @@
+/**
+ * @typedef {Object} Image
+ * @property {number} id 
+ * @property {string} title 
+ * @property {string} src 
+ */
+
+/** @type {Image[]} Array of images displayed in the gallery */
 const images = [
   { id: 1, title: "Alaska", src: "assets/img/alaska.png" },
   { id: 2, title: "Anime", src: "assets/img/anime.png" },
@@ -9,9 +17,10 @@ const images = [
   { id: 8, title: "Snowbunting", src: "assets/img/snowbunting.png" },
   { id: 9, title: "Snowleopard", src: "assets/img/snowleopard.png" },
   { id: 10, title: "Travel", src: "assets/img/travel.png" },
-  { id: 11, title: "Winter", src: "assets/img/winter.png" }
+  { id: 11, title: "Winter", src: "assets/img/winter.png" },
 ];
 
+/** DOM element references */
 const gallery = document.getElementById("gallery");
 const dialog = document.getElementById("image-dialog");
 const modalFigure = document.getElementById("modal-figure");
@@ -19,11 +28,17 @@ const counter = document.getElementById("image-counter");
 const closeBtn = document.getElementById("close-dialog");
 const prevBtn = document.getElementById("prev-button");
 const nextBtn = document.getElementById("next-button");
-const modalTitle = document.getElementById("modal-title")
+const modalTitle = document.getElementById("modal-title");
 
+/** Current index of the displayed image in the modal */
 let currentIndex = 0;
+
+/** Last focused element before opening the modal (for accessibility) */
 let lastFocusedElement = null;
 
+/**
+ * Render all gallery items dynamically based on the `images` array
+ */
 function renderGallery() {
   gallery.innerHTML = "";
   for (let i = 0; i < images.length; i++) {
@@ -39,13 +54,20 @@ function renderGallery() {
   }
 }
 
+/**
+ * Render the modal content for the current image
+ */
 function renderModal() {
   const img = images[currentIndex];
   modalFigure.innerHTML = `<img src="${img.src}" alt="${img.title}"><figcaption>${img.title}</figcaption>`;
   counter.textContent = `${img.id}/${images.length}`;
-   modalTitle.textContent = img.title;
+  modalTitle.textContent = img.title;
 }
 
+/**
+ * Open the modal and display the image at the specified index
+ * @param {number} index - Index of the image to open
+ */
 function openImage(index) {
   lastFocusedElement = document.activeElement;
   currentIndex = index;
@@ -54,27 +76,39 @@ function openImage(index) {
   closeBtn.focus();
 }
 
+/**
+ * Close the modal and return focus to the last focused element
+ */
 function closeModal() {
   dialog.close();
   lastFocusedElement?.focus();
 }
 
+/**
+ * Show the next image in the modal
+ */
 function nextImage() {
   currentIndex = (currentIndex + 1) % images.length;
   renderModal();
 }
 
+/**
+ * Show the previous image in the modal
+ */
 function prevImage() {
   currentIndex = (currentIndex - 1 + images.length) % images.length;
   renderModal();
 }
 
+/* ===== Event Listeners ===== */
 
+// Open modal on gallery click
 gallery.addEventListener("click", e => {
   const item = e.target.closest(".gallery-item");
   if (item) openImage(+item.dataset.index);
 });
 
+// Open modal on gallery item keyboard activation (Enter or Space)
 gallery.addEventListener("keydown", e => {
   const item = e.target.closest(".gallery-item");
   if (item && (e.key === "Enter" || e.key === " ")) {
@@ -83,12 +117,14 @@ gallery.addEventListener("keydown", e => {
   }
 });
 
-
+// Close modal on close button click
 closeBtn.addEventListener("click", closeModal);
+
+// Navigate modal images with next/previous buttons
 prevBtn.addEventListener("click", prevImage);
 nextBtn.addEventListener("click", nextImage);
 
-
+// Keyboard activation for modal navigation buttons
 prevBtn.addEventListener("keydown", e => {
   if (e.key === "Enter" || e.key === " ") {
     e.preventDefault();
@@ -103,7 +139,7 @@ nextBtn.addEventListener("keydown", e => {
   }
 });
 
-
+// Global keyboard events while modal is open
 document.addEventListener("keydown", e => {
   if (!dialog.open) return;
   if (e.key === "Escape") {
@@ -114,7 +150,7 @@ document.addEventListener("keydown", e => {
   if (e.key === "ArrowLeft") prevImage();
 });
 
-
+// Close modal if click occurs outside modal content
 dialog.addEventListener("click", e => {
   const rect = dialog.getBoundingClientRect();
   if (e.clientX < rect.left || e.clientX > rect.right || e.clientY < rect.top || e.clientY > rect.bottom) {
@@ -122,4 +158,5 @@ dialog.addEventListener("click", e => {
   }
 });
 
+// Initial rendering of the gallery
 renderGallery();

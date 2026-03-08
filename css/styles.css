@@ -141,7 +141,7 @@ h1 {
 }
 
 .gallery-item:hover {
-  transform: scale(1.03);
+  transform: scale(1.8);
 }
 
 .gallery-item img {
