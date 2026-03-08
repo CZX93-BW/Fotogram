@@ -316,6 +316,21 @@ button:focus {
     align-items: center;
     justify-content: center;
   }
+  .gallery-section {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    gap: var(--spacing);
+  }
+
+  .gallery-item:hover {
+  transform: scale(1.8);
+}
+
   h1 {
     font-size: 24px;
     text-align: center;
@@ -330,7 +345,17 @@ button:focus {
     gap: var(--spacing);
     justify-content: space-around;
   }
-  
+  .gallery-section {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    gap: var(--spacing);
+  }
+
   .gallery-item {
     height: auto;
     width: auto;
@@ -339,6 +364,10 @@ button:focus {
     justify-content: center;
     flex: 0 0 auto;
     }
+
+    .gallery-item:hover {
+  transform: scale(1.8);
+}
 
   h1 {
     font-size: 48px;
@@ -391,8 +420,8 @@ button:focus {
   }
 
   .gallery-item:hover {
-    transform: scale(1.03);
-  }
+  transform: scale(1.8);
+}
 }
 
 /* ===== Responsive Modal ===== */
@@ -468,37 +497,41 @@ button:focus {
 }
 
 /* big screens: >600px */
-@media (min-width: 600px) {
-  .modal-content #modal-title {
-    font-size: 48px;
-  }
+.modal-figure {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 0 2rem;
+  min-height: 0;
+}
 
-  .modal-content .modal-figure figcaption {
-    font-size: 2rem;
-  }
+.modal-figure img {
+  width: 500px;
+  max-width: 100%;
+  height: 500px;
+  max-height: 80vh; /* Limitiert Höhe an Viewport, verhindert Scroll */
+  object-fit: contain;
+  border-radius: 16px;
+}
 
+/* Responsive adjustments */
+@media (max-width: 399px) {
   .modal-figure img {
-    min-width: 400px;
-    min-height: 400px;
+    max-height: 60vh; /* etwas kleiner für very small screens */
   }
+}
 
-
-  .modal-content .counter {
-    font-size: 1.8rem;
+@media (min-width: 400px) and (max-width: 599px) {
+  .modal-figure img {
+    max-height: 70vh;
   }
+}
 
-  .modal-content .modal-footer .icon-btn {
-    padding: 8px 16px;
-  }
-
-  .modal-content #prev-button .icon,
-  .modal-content #next-button .icon {
-    width: 60px;
-    height: 60px;
-  }
-
-  .modal-content #close-dialog .icon {
-    width: 20px;
-    height: 20px;
+@media (min-width: 600px) {
+  .modal-figure img {
+    max-height: 80vh; /* größer auf großen Screens */
   }
 }
