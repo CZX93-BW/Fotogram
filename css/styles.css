@@ -510,18 +510,18 @@ button:focus {
 }
 
 .modal-figure img {
-  width: 500px;
+  width: 400px;
   max-width: 100%;
-  height: 500px;
-  max-height: 80vh; /* Limitiert Höhe an Viewport, verhindert Scroll */
+  height: 400px;
+  max-height: 80vh; 
   object-fit: contain;
   border-radius: 16px;
 }
 
-/* Responsive adjustments */
+
 @media (max-width: 399px) {
   .modal-figure img {
-    max-height: 60vh; /* etwas kleiner für very small screens */
+    max-height: 60vh; 
   }
 }
 
@@ -533,6 +533,6 @@ button:focus {
 
 @media (min-width: 600px) {
   .modal-figure img {
-    max-height: 80vh; /* größer auf großen Screens */
+    max-height: 80vh; 
   }
 }
