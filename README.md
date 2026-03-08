@@ -72,7 +72,10 @@ Fotogram/
 ├── index.html         # Startseite / Galerie
 └── README.md          # Diese Dokumentation
 
-🚀 Installation & Setup
+
+---
+
+##🚀 Installation & Setup
 
 Da Fotogram auf reinem HTML, CSS und JavaScript basiert, ist kein Build-Prozess nötig:
 
@@ -86,6 +89,8 @@ cd fotogram
 
 Projekt starten:
 Öffne die index.html Datei in einem Browser oder nutze "Live Server" in VS Code.
+
+---
 
 Ein großes Dankeschön an alle Lernressourcen und Mentoren, die bei der Entwicklung unterstützt haben.
 
