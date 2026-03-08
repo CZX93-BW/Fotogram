@@ -9,17 +9,10 @@
 </head>
 <body>
   <header class="header">
-  <div class="logo">
-    <img src="assets/img/Capa_1.png" alt="Fotogram Logo" width="220" height="41">
-  </div>
-  <nav aria-label="Main Navigation">
-    <ul class="nav">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="#">Explore</a></li>
-      <li><a href="#">Profile</a></li>
-    </ul>
-  </nav>
-</header>
+    <div class="logo">
+      <img src="assets/img/Capa_1.png"  alt="Fotogram Logo" width="220" height="41">
+    </div>
+  </header>
 
   <main id="main" tabindex="-1">
     <section class="gallery-section" aria-labelledby="gallery-title">
@@ -28,31 +21,40 @@
     </section>
   </main>
 
+  <!-- Modal / Dialog -->
   <dialog id="image-dialog" class="modal" aria-labelledby="modal-title">
     <article class="modal-content">
-        <header class="modal-header">
-        <h2 id="modal-title">Image View</h2>
+      <header class="modal-header">
+        <h2 id="modal-title"></h2>
         <button id="close-dialog" aria-label="Close" class="icon-btn">
-            <img src="assets/icons/Property 1=Default.svg" alt="Close" class="icon">
+          <img src="assets/icons/Property 1=Default.svg" alt="Close" class="icon">
         </button>
-        </header>
+      </header>
 
-        <!-- Hier muss das Figure-Element rein -->
-        <figure id="modal-figure" class="modal-figure"></figure>
+      <!-- Figure dynamically filled by JS -->
+      <figure id="modal-figure" class="modal-figure"></figure>
 
-        <footer class="modal-footer">
+      <footer class="modal-footer">
         <button id="prev-button" aria-label="Previous" class="icon-btn rotate-180">
-            <img src="assets/icons/Arrow-Right.svg" alt="Previous" class="icon">
+          <img src="assets/icons/Arrow-Right.svg" alt="Previous" class="icon">
         </button>
+
+        <!-- Counter -->
+        <span id="image-counter" class="counter">1/11</span>
+
         <button id="next-button" aria-label="Next" class="icon-btn">
-            <img src="assets/icons/Arrow-Right.svg" alt="Next" class="icon">
+          <img src="assets/icons/Arrow-Right.svg" alt="Next" class="icon">
         </button>
-        </footer>
+      </footer>
     </article>
-    </dialog>
+  </dialog>
 
   <footer class="footer">
-    <p>&copy; 2026 Fotogram</p>
+    
+    <div class="footer-logo">
+      <img src="assets/icons/da_logo_white.svg"  alt="DA_Logo" width="220" height="41">
+    </div>
+    <p class="copyright">&copy; 2026 Developer Akademie GmbH</p>
   </footer>
 
   <script type="module" src="js/script.js"></script>

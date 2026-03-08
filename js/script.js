@@ -1,5 +1,4 @@
-// --- Data ---
-const IMAGE_DATA = [
+const images = [
   { id: 1, title: "Alaska", src: "assets/img/alaska.png" },
   { id: 2, title: "Anime", src: "assets/img/anime.png" },
   { id: 3, title: "Bluebird", src: "assets/img/bluebird.png" },
@@ -10,99 +9,117 @@ const IMAGE_DATA = [
   { id: 8, title: "Snowbunting", src: "assets/img/snowbunting.png" },
   { id: 9, title: "Snowleopard", src: "assets/img/snowleopard.png" },
   { id: 10, title: "Travel", src: "assets/img/travel.png" },
-  { id: 11, title: "Winter", src: "assets/img/winter.png" },
+  { id: 11, title: "Winter", src: "assets/img/winter.png" }
 ];
 
-// --- Templates ---
-function renderGalleryItem(image) {
-  return `
-    <article class="gallery-item" data-id="${image.id}" tabindex="0">
-      <figure>
-        <img src="${image.src}" alt="${image.title}">
-        <figcaption>${image.title}</figcaption>
-      </figure>
-    </article>
-  `;
-}
+const gallery = document.getElementById("gallery");
+const dialog = document.getElementById("image-dialog");
+const modalFigure = document.getElementById("modal-figure");
+const counter = document.getElementById("image-counter");
+const closeBtn = document.getElementById("close-dialog");
+const prevBtn = document.getElementById("prev-button");
+const nextBtn = document.getElementById("next-button");
+const modalTitle = document.getElementById("modal-title")
 
-function renderDialogContent(image) {
-  return `
-    <img src="${image.src}" alt="${image.title}">
-    <figcaption>${image.title}</figcaption>
-  `;
-}
-
-// --- Gallery ---
-const GALLERY = document.getElementById("gallery");
-
-function initGallery() {
-  GALLERY.innerHTML = "";
-  IMAGE_DATA.forEach(image => {
-    GALLERY.innerHTML += renderGalleryItem(image);
-  });
-  addGalleryEvents();
-}
-
-function addGalleryEvents() {
-  document.querySelectorAll(".gallery-item").forEach(item => {
-    item.addEventListener("click", () => openDialog(item.dataset.id));
-    item.addEventListener("keydown", e => {
-      if (e.key === "Enter" || e.key === " ") {
-        e.preventDefault();
-        openDialog(item.dataset.id);
-      }
-    });
-  });
-}
-
-// --- Modal ---
-const DIALOG = document.getElementById("image-dialog");
-const FIGURE = document.getElementById("modal-figure");
 let currentIndex = 0;
+let lastFocusedElement = null;
 
-function openDialog(id) {
-  currentIndex = IMAGE_DATA.findIndex(img => img.id == id);
-  updateDialog();
-  DIALOG.showModal();
+function renderGallery() {
+  gallery.innerHTML = "";
+  for (let i = 0; i < images.length; i++) {
+    const img = images[i];
+    gallery.innerHTML += `
+      <article class="gallery-item" data-index="${i}" tabindex="0">
+        <figure>
+          <img src="${img.src}" alt="${img.title}">
+          <figcaption>${img.title}</figcaption>
+        </figure>
+      </article>
+    `;
+  }
 }
 
-function updateDialog() {
-  FIGURE.innerHTML = renderDialogContent(IMAGE_DATA[currentIndex]);
+function renderModal() {
+  const img = images[currentIndex];
+  modalFigure.innerHTML = `<img src="${img.src}" alt="${img.title}"><figcaption>${img.title}</figcaption>`;
+  counter.textContent = `${img.id}/${images.length}`;
+   modalTitle.textContent = img.title;
 }
 
-// --- Modal Controls ---
-function initModal() {
-  const closeBtn = document.getElementById("close-dialog");
-  const prevBtn = document.getElementById("prev-button");
-  const nextBtn = document.getElementById("next-button");
-
-  if (closeBtn) closeBtn.addEventListener("click", () => DIALOG.close());
-  if (prevBtn) prevBtn.addEventListener("click", showPrev);
-  if (nextBtn) nextBtn.addEventListener("click", showNext);
-
-  DIALOG.addEventListener("click", e => {
-    if (e.target === DIALOG) DIALOG.close();
-  });
-
-  document.addEventListener("keydown", e => {
-    if (e.key === "Escape") DIALOG.close();
-  });
+function openImage(index) {
+  lastFocusedElement = document.activeElement;
+  currentIndex = index;
+  renderModal();
+  dialog.showModal();
+  closeBtn.focus();
 }
 
-function showPrev() {
-  currentIndex = (currentIndex - 1 + IMAGE_DATA.length) % IMAGE_DATA.length;
-  updateDialog();
+function closeModal() {
+  dialog.close();
+  lastFocusedElement?.focus();
 }
 
-function showNext() {
-  currentIndex = (currentIndex + 1) % IMAGE_DATA.length;
-  updateDialog();
+function nextImage() {
+  currentIndex = (currentIndex + 1) % images.length;
+  renderModal();
 }
 
-// --- Init ---
-function init() {
-  initGallery();
-  initModal();
+function prevImage() {
+  currentIndex = (currentIndex - 1 + images.length) % images.length;
+  renderModal();
 }
 
-init();
+
+gallery.addEventListener("click", e => {
+  const item = e.target.closest(".gallery-item");
+  if (item) openImage(+item.dataset.index);
+});
+
+gallery.addEventListener("keydown", e => {
+  const item = e.target.closest(".gallery-item");
+  if (item && (e.key === "Enter" || e.key === " ")) {
+    e.preventDefault();
+    openImage(+item.dataset.index);
+  }
+});
+
+
+closeBtn.addEventListener("click", closeModal);
+prevBtn.addEventListener("click", prevImage);
+nextBtn.addEventListener("click", nextImage);
+
+
+prevBtn.addEventListener("keydown", e => {
+  if (e.key === "Enter" || e.key === " ") {
+    e.preventDefault();
+    prevImage();
+  }
+});
+
+nextBtn.addEventListener("keydown", e => {
+  if (e.key === "Enter" || e.key === " ") {
+    e.preventDefault();
+    nextImage();
+  }
+});
+
+
+document.addEventListener("keydown", e => {
+  if (!dialog.open) return;
+  if (e.key === "Escape") {
+    closeModal();
+    return;
+  }
+  if (e.key === "ArrowRight") nextImage();
+  if (e.key === "ArrowLeft") prevImage();
+});
+
+
+dialog.addEventListener("click", e => {
+  const rect = dialog.getBoundingClientRect();
+  if (e.clientX < rect.left || e.clientX > rect.right || e.clientY < rect.top || e.clientY > rect.bottom) {
+    closeModal();
+  }
+});
+
+renderGallery();
