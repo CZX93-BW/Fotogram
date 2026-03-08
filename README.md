@@ -4,7 +4,7 @@ Eine moderne, interaktive Website zum Anzeigen und Navigieren eines persönliche
 
 Dieses Projekt entstand im Rahmen eigener Webentwicklungsprojekte zur Übung mit **HTML, CSS und JavaScript** und legt den Fokus auf **Responsivität, sauberen Code und Accessibility**.
 
-🌍 **[Live-Demo ansehen](#)** | 💻 **[GitHub Repository](#)**
+
 
 ---
 
