@@ -100,63 +100,88 @@ function prevImage() {
   renderModal();
 }
 
-/* ===== Event Listeners ===== */
 
-// Open modal on gallery click
-gallery.addEventListener("click", e => {
-  const item = e.target.closest(".gallery-item");
-  if (item) openImage(+item.dataset.index);
-});
+/**
+ * Registers all event listeners for gallery interaction,
+ * modal navigation and keyboard accessibility
+ */
+function setEventlistener() {
 
-// Open modal on gallery item keyboard activation (Enter or Space)
-gallery.addEventListener("keydown", e => {
-  const item = e.target.closest(".gallery-item");
-  if (item && (e.key === "Enter" || e.key === " ")) {
-    e.preventDefault();
-    openImage(+item.dataset.index);
-  }
-});
+  // Open modal via mouse click
+  gallery.addEventListener("click", (e) => {
+    const item = e.target.closest(".gallery-item");
+    if (item) openImage(+item.dataset.index);
+  });
 
-// Close modal on close button click
-closeBtn.addEventListener("click", closeModal);
+  // Open modal via keyboard (Enter or Space)
+  gallery.addEventListener("keydown", (e) => {
+    const item = e.target.closest(".gallery-item");
+    if (item && (e.key === "Enter" || e.key === " ")) {
+      e.preventDefault();
+      openImage(+item.dataset.index);
+    }
+  });
 
-// Navigate modal images with next/previous buttons
-prevBtn.addEventListener("click", prevImage);
-nextBtn.addEventListener("click", nextImage);
+  // Close modal
+  closeBtn.addEventListener("click", closeModal);
 
-// Keyboard activation for modal navigation buttons
-prevBtn.addEventListener("keydown", e => {
-  if (e.key === "Enter" || e.key === " ") {
-    e.preventDefault();
-    prevImage();
-  }
-});
+  // Navigation buttons
+  prevBtn.addEventListener("click", prevImage);
+  nextBtn.addEventListener("click", nextImage);
 
-nextBtn.addEventListener("keydown", e => {
-  if (e.key === "Enter" || e.key === " ") {
-    e.preventDefault();
-    nextImage();
-  }
-});
+  // Keyboard activation for navigation buttons
+  prevBtn.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      prevImage();
+    }
+  });
 
-// Global keyboard events while modal is open
-document.addEventListener("keydown", e => {
-  if (!dialog.open) return;
-  if (e.key === "Escape") {
-    closeModal();
-    return;
-  }
-  if (e.key === "ArrowRight") nextImage();
-  if (e.key === "ArrowLeft") prevImage();
-});
+  nextBtn.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      nextImage();
+    }
+  });
 
-// Close modal if click occurs outside modal content
-dialog.addEventListener("click", e => {
-  const rect = dialog.getBoundingClientRect();
-  if (e.clientX < rect.left || e.clientX > rect.right || e.clientY < rect.top || e.clientY > rect.bottom) {
-    closeModal();
-  }
-});
+  // Global keyboard navigation while modal is open
+  document.addEventListener("keydown", (e) => {
+    if (!dialog.open) return;
 
-// Initial rendering of the gallery
-renderGallery();
+    if (e.key === "Escape") {
+      closeModal();
+      return;
+    }
+
+    if (e.key === "ArrowRight") nextImage();
+    if (e.key === "ArrowLeft") prevImage();
+  });
+
+  // Close modal when clicking outside dialog content
+  dialog.addEventListener("click", (e) => {
+    const rect = dialog.getBoundingClientRect();
+
+    if (
+      e.clientX < rect.left ||
+      e.clientX > rect.right ||
+      e.clientY < rect.top ||
+      e.clientY > rect.bottom
+    ) {
+      closeModal();
+    }
+  });
+}
+
+/**
+ * Initializes the application
+ * Renders the gallery and registers all event listeners
+ */
+function init() {
+  renderGallery();
+  setEventlistener();
+}
+
+/**
+ * Makes init globally accessible for the HTML onload attribute
+ */
+window.init = init;
