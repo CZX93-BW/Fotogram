@@ -7,17 +7,23 @@
 
 /** @type {Image[]} Array of images displayed in the gallery */
 const images = [
-  { id: 1, title: "Alaska", src: "assets/img/alaska.png" },
-  { id: 2, title: "Anime", src: "assets/img/anime.png" },
-  { id: 3, title: "Bluebird", src: "assets/img/bluebird.png" },
-  { id: 4, title: "Hurricane", src: "assets/img/hurricane.png" },
-  { id: 5, title: "Lake", src: "assets/img/lake.png" },
-  { id: 6, title: "Moorente", src: "assets/img/moorente.png" },
-  { id: 7, title: "Sea", src: "assets/img/sea.png" },
-  { id: 8, title: "Snowbunting", src: "assets/img/snowbunting.png" },
-  { id: 9, title: "Snowleopard", src: "assets/img/snowleopard.png" },
-  { id: 10, title: "Travel", src: "assets/img/travel.png" },
-  { id: 11, title: "Winter", src: "assets/img/winter.png" },
+  { id: 1, title: "Herbstgebirge", src: "assets/img/autumn_mountain.jpg" },
+  { id: 2, title: "Gebirgssonnenuntergang", src: "assets/img/dawn_mountain.jpg" },
+  { id: 3, title: "Sommersonnenuntergang", src: "assets/img/dawn_summer.jpg" },
+  { id: 4, title: "Dünen", src: "assets/img/dunes.jpg" },
+  { id: 5, title: "Rehkitz Natur", src: "assets/img/fawn_nature.jpg" },
+  { id: 6, title: "Gebirgswald", src: "assets/img/forest_mountain.jpg" },
+  { id: 7, title: "Wald", src: "assets/img/forest.jpg" },
+  { id: 8, title: "Seeblick im Herbst", src: "assets/img/lakeview_autumn.jpg" },
+  { id: 9, title: "Seeblick Gebirge", src: "assets/img/lakeview_mountain.jpg" },
+  { id: 10, title: "Gebirgstunnel", src: "assets/img/passage_mountain.jpg" },
+  { id: 11, title: "Straßenasicht Niederlande", src: "assets/img/streetview_netherlands.jpg" },
+  { id: 12, title: "Sonnenuntergang am Meer", src: "assets/img/sundown_sea.jpg" },
+  { id: 13, title: "Gebirgstäler", src: "assets/img/tales_mountain.jpg" },
+  { id: 14, title: "Wasserfall im Hochland", src: "assets/img/waterfall_highlands.jpg" },
+  { id: 15, title: "Wintergebirge", src: "assets/img/winter_mountain.jpg" },
+  { id: 16, title: "Schnee im Winter", src: "assets/img/winter_snow.jpg" },
+  
 ];
 
 /** DOM element references */
