@@ -7,22 +7,20 @@
 
 /** @type {Image[]} Array of images displayed in the gallery */
 const images = [
-  { id: 1, title: "Herbstgebirge", src: "assets/img/autumn_mountain.jpg" },
-  { id: 2, title: "Gebirgssonnenuntergang", src: "assets/img/dawn_mountain.jpg" },
-  { id: 3, title: "Sommersonnenuntergang", src: "assets/img/dawn_summer.jpg" },
-  { id: 4, title: "Dünen", src: "assets/img/dunes.jpg" },
-  { id: 5, title: "Rehkitz Natur", src: "assets/img/fawn_nature.jpg" },
-  { id: 6, title: "Gebirgswald", src: "assets/img/forest_mountain.jpg" },
-  { id: 7, title: "Wald", src: "assets/img/forest.jpg" },
-  { id: 8, title: "Seeblick im Herbst", src: "assets/img/lakeview_autumn.jpg" },
-  { id: 9, title: "Seeblick Gebirge", src: "assets/img/lakeview_mountain.jpg" },
-  { id: 10, title: "Gebirgstunnel", src: "assets/img/passage_mountain.jpg" },
-  { id: 11, title: "Straßenasicht Niederlande", src: "assets/img/streetview_netherlands.jpg" },
-  { id: 12, title: "Sonnenuntergang am Meer", src: "assets/img/sundown_sea.jpg" },
-  { id: 13, title: "Gebirgstäler", src: "assets/img/tales_mountain.jpg" },
-  { id: 14, title: "Wasserfall im Hochland", src: "assets/img/waterfall_highlands.jpg" },
-  { id: 15, title: "Wintergebirge", src: "assets/img/winter_mountain.jpg" },
-  { id: 16, title: "Schnee im Winter", src: "assets/img/winter_snow.jpg" },
+  { id: 1, title: "Gebirgssonnenuntergang", src: "assets/img/dawn_mountain.jpg" },
+  { id: 2, title: "Dünen", src: "assets/img/dunes.jpg" },
+  { id: 3, title: "Rehkitz Natur", src: "assets/img/fawn_nature.jpg" },
+  { id: 4, title: "Gebirgswald", src: "assets/img/forest_mountain.jpg" },
+  { id: 5, title: "Wald", src: "assets/img/forest.jpg" },
+  { id: 6, title: "Seeblick im Herbst", src: "assets/img/lakeview_autumn.jpg" },
+  { id: 7, title: "Seeblick Gebirge", src: "assets/img/lakeview_mountain.jpg" },
+  { id: 8, title: "Gebirgstunnel", src: "assets/img/passage_mountain.jpg" },
+  { id: 9, title: "Straßenasicht Niederlande", src: "assets/img/streetview_netherlands.jpg" },
+  { id: 10, title: "Sonnenuntergang am Meer", src: "assets/img/sundown_sea.jpg" },
+  { id: 11, title: "Gebirgstäler", src: "assets/img/tales_mountain.jpg" },
+  { id: 12, title: "Wasserfall im Hochland", src: "assets/img/waterfall_highlands.jpg" },
+  { id: 13, title: "Wintergebirge", src: "assets/img/winter_mountain.jpg" },
+  { id: 14, title: "Schnee im Winter", src: "assets/img/winter_snow.jpg" },
   
 ];
 
